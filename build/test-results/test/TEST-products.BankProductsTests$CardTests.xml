@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="products.BankProductsTests$CardTests" tests="5" skipped="0" failures="0" errors="0" timestamp="2022-10-05T18:20:28" hostname="DARSIYA09" time="0.01">
+  <properties/>
+  <testcase name="[1] -100.0" classname="products.BankProductsTests$CardTests" time="0.002"/>
+  <testcase name="[2] 0.0" classname="products.BankProductsTests$CardTests" time="0.001"/>
+  <testcase name="[3] 50.0" classname="products.BankProductsTests$CardTests" time="0.002"/>
+  <testcase name="[4] 100.0" classname="products.BankProductsTests$CardTests" time="0.001"/>
+  <testcase name="[5] 100.01" classname="products.BankProductsTests$CardTests" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
