@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="products.BankProductsTests$DepositTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-10-05T18:20:28" hostname="DARSIYA09" time="0.018">
-  <properties/>
-  <testcase name="closeMethodTest" classname="products.BankProductsTests$DepositTests" time="0.018"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

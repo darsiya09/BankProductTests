@@ -14,7 +14,7 @@ public class Deposit extends BankProduct {
         this.isDepositActive = true;
     }
 
-    public void close(){
+    public void close() {
         if (isDepositActive) isDepositActive = false;
     }
 }

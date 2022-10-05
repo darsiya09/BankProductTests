@@ -16,7 +16,7 @@ public abstract class BankProduct {
     }
 
     public void replenishment(double payment) {
-        if (payment>0) balance += payment;
+        if (payment > 0) balance += payment;
         else throw new ArgumentValidateException("Payment should be positive");
     }
 

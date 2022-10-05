@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="products.BankProductsTests$ClassStructureTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-10-05T18:20:28" hostname="DARSIYA09" time="0.009">
-  <properties/>
-  <testcase name="classPropertiesTest" classname="products.BankProductsTests$ClassStructureTests" time="0.004"/>
-  <testcase name="hierarchyTest" classname="products.BankProductsTests$ClassStructureTests" time="0.002"/>
-  <testcase name="classMethodsTest" classname="products.BankProductsTests$ClassStructureTests" time="0.002"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

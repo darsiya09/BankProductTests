@@ -1,6 +1,5 @@
 package products;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -11,6 +10,7 @@ import products.cards.CreditCard;
 import products.cards.CurrencyDebitCard;
 import products.cards.DebitCard;
 import products.deposits.Deposit;
+import products.enums.MemberType;
 import products.exceptions.ArgumentValidateException;
 
 import java.lang.reflect.*;
@@ -37,20 +37,25 @@ class BankProductsTests {
 
         @Test
         void classPropertiesTest() {
-            assertAll("Class has property",
+            assertAll("Class has properties",
                     () -> assertAll("BankProduct",
-                            () -> assertTrue(classHasMember(BankProduct.class, "name",
-                                    Modifier.PROTECTED, MemberType.PROPERTY)),
-                            () -> assertTrue(classHasMember(BankProduct.class, "currency",
-                                    Modifier.PROTECTED, MemberType.PROPERTY)),
-                            () -> assertTrue(classHasMember(BankProduct.class, "balance",
-                                    Modifier.PROTECTED, MemberType.PROPERTY))),
+                            () -> assertTrue(classHasMember(
+                                    BankProduct.class, "name", MemberType.PROPERTY, Modifier.PROTECTED
+                            )),
+                            () -> assertTrue(classHasMember(
+                                    BankProduct.class, "currency", MemberType.PROPERTY, Modifier.PROTECTED
+                            )),
+                            () -> assertTrue(classHasMember(
+                                    BankProduct.class, "balance", MemberType.PROPERTY, Modifier.PROTECTED
+                            ))),
                     () -> assertAll("Credit card",
-                            () -> assertTrue(classHasMember(CreditCard.class, "interestRate",
-                                    Modifier.PRIVATE, MemberType.PROPERTY))),
+                            () -> assertTrue(classHasMember(
+                                    CreditCard.class, "interestRate", MemberType.PROPERTY, Modifier.PRIVATE
+                            ))),
                     () -> assertAll("Deposit",
-                            () -> assertTrue(classHasMember(Deposit.class, "isDepositActive",
-                                    Modifier.PRIVATE, MemberType.PROPERTY))));
+                            () -> assertTrue(classHasMember(
+                                    Deposit.class, "isDepositActive", MemberType.PROPERTY, Modifier.PRIVATE
+                            ))));
 
         }
 
@@ -58,31 +63,33 @@ class BankProductsTests {
         void classMethodsTest() {
             assertAll("Class has methods",
                     () -> assertAll("BankProduct",
-                            () -> assertTrue(classHasMember(BankProduct.class, "replenishment",
-                                    Modifier.PUBLIC, MemberType.METHOD)),
-                            () -> assertTrue(classHasMember(BankProduct.class, "getBalance",
-                                    Modifier.PUBLIC, MemberType.METHOD))),
+                            () -> assertTrue(classHasMember(
+                                    BankProduct.class, "replenishment", MemberType.METHOD, Modifier.PUBLIC
+                            )),
+                            () -> assertTrue(classHasMember(
+                                    BankProduct.class, "getBalance", MemberType.METHOD, Modifier.PUBLIC
+                            ))),
                     () -> assertAll("Card",
-                            () -> assertTrue(classHasMember(Card.class, "writingOff",
-                                    Modifier.PUBLIC, MemberType.METHOD))),
+                            () -> assertTrue(classHasMember(
+                                    Card.class, "writingOff", MemberType.METHOD, Modifier.PUBLIC
+                            ))),
                     () -> assertAll("CreditCard",
-                            () -> assertTrue(classHasMember(CreditCard.class, "getDebt",
-                                    Modifier.PUBLIC, MemberType.METHOD))),
+                            () -> assertTrue(classHasMember(
+                                    CreditCard.class, "getDebt", MemberType.METHOD, Modifier.PUBLIC
+                            ))),
                     () -> assertAll("Deposit",
-                            () -> assertTrue(classHasMember(Deposit.class, "close",
-                                    Modifier.PUBLIC, MemberType.METHOD)))
+                            () -> assertTrue(classHasMember(
+                                    Deposit.class, "close", MemberType.METHOD, Modifier.PUBLIC
+                            )))
             );
         }
 
-        private boolean classHasMember(Class<? extends BankProduct> clazz,
-                                       String memberName, int modifier, MemberType memberType) {
-            Member[] members = MemberType.PROPERTY.equals(memberType) ? clazz.getDeclaredFields() : clazz.getDeclaredMethods();
+        private boolean classHasMember(
+                Class<? extends BankProduct> clazz, String memberName, MemberType memberType, int modifier) {
+            Member[] members =
+                    MemberType.PROPERTY.equals(memberType) ? clazz.getDeclaredFields() : clazz.getDeclaredMethods();
             return Arrays.stream(members)
                     .anyMatch(field -> field.getName().equals(memberName) && field.getModifiers() == modifier);
-        }
-
-        private enum MemberType {
-            METHOD, PROPERTY
         }
     }
 
@@ -100,7 +107,7 @@ class BankProductsTests {
 
         @Test
         void getBalanceTest() {
-            assertEquals(balance, product.getBalance(), () -> "Values is not consistent");
+            assertEquals(balance, product.getBalance(), () -> "Values are not consistent");
         }
 
         @ParameterizedTest
@@ -121,7 +128,8 @@ class BankProductsTests {
         @ValueSource(doubles = {-10, 0, 100})
         void validateBalanceArg(double balance) {
             try {
-                Method balanceValidateMethod = BankProduct.class.getDeclaredMethod("validateBalance", double.class);
+                Method balanceValidateMethod =
+                        BankProduct.class.getDeclaredMethod("validateBalance", double.class);
                 balanceValidateMethod.setAccessible(true);
                 if (balance >= 0) {
                     assertEquals(balanceValidateMethod.invoke(product, balance), balance);
@@ -135,13 +143,6 @@ class BankProductsTests {
                 e.printStackTrace();
             }
         }
-
-
-        @AfterEach
-        void tearDown() {
-            product = null;
-        }
-
     }
 
     @Nested
